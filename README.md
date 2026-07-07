@@ -23,6 +23,10 @@
 - CNN(Convolutional Neural Network) 기반 이미지 분류 모델
 #### Dataset
 - AI Hub 동의보감 약초 이미지 데이터셋 활용
+#### Frontend
+- html
+- css
+- js
 #### Backend
 - Flask
 
