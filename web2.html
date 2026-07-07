@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#howto">사용법</a></li>
+        <li><a href="#scan">이미지 스캔</a></li>
+        <li><a href="#madeby">만든이</a></li>
+    </ul>
+</nav>
+
+<div>
+    <header>
+        <h1>약초를 찾아내자!</h1>
+        <div>보다 빠른 약초 찾기</div>
+    </header>
+</div>
+
+<div>
+    <header>
+        <h2 id="howto">사용법</h2>
+        <p>
+            사이트를 이용하기 어렵다고요?<br>
+            그럼 이 설명서를 읽어보아요.
+        </p>
+    </header>
+    <div>
+        <h4>사진찍기</h4>
+        <p>약초라고 생각되는 식물을 찍어주세요.</p>
+    </div>
+    <div>
+        <h4></h4>
+    </div>
+</div>
+<!--<form> action="/ai" method="post" enctype="multipart/form-data">
+    <input name="message" type="text">
+    <input name="image" type="file" id="scan">
+    <button id="camera--trigger">전송</button>
+<form>-->
+
+<main id="camera">
+
+        <canvas id="camera--sensor"></canvas>
+
+        <!-- 기기의 카메라에 접근하여 영상을 페이지에 재생한다. -->
+        <video id="camera--view" autoplay playsinline></video>
+
+        <img src="//:0" alt="" id="camera--output">
+
+        <button id="camera--trigger">사진촬영</button>
+
+</main>
+
+
+<script>
+
+        let constraints = { video: { facingMode: "user"}, audio: false};
+        const cameraView = document.querySelector("#camera--view");
+        const cameraOutput = document.querySelector("#camera--output");
+        const cameraSensor = document.querySelector("#camera--sensor");
+        const cameraTrigger = document.querySelector("#camera--trigger");
+
+
+        function cameraStart(){
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream){
+                    track = stream.getTracks()[0];
+                    cameraView.srcObject = stream;
+
+                })
+                .catch(function(error){
+                    console.error("카메라에 문제가 있습니다.", error);
+                })
+        }
+
+        //촬영 버튼 클릭 리스너
+        cameraTrigger.addEventListener("click", function(){
+
+            cameraSensor.width = cameraView.videoWidth; //640으로 정해져서 나오네?
+            cameraSensor.height = cameraView.videoHeight;
+            cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+            cameraOutput.src = cameraSensor.toDataURL("image/webp");
+            cameraOutput.classList.add("taken");
+            console.log(cameraSensor.height);
+        });
+
+        // 페이지가 로드되면 함수 실행
+        window.addEventListener("load", cameraStart, false);
+</script>
+
+
+</body>
+</html>
