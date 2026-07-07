@@ -15,3 +15,13 @@
 1. 구분하고 싶은 식물의 사진을 촬영합니다.
 2. 웹 페이지에 이미지를 업로드합니다.
 3. AI 모델이 이미지를 분석하여 분류 결과를 제공합니다.
+
+### 개발 환경 및 기술 스택
+#### AI Model
+- Python
+- TensorFlow
+- CNN(Convolutional Neural Network) 기반 이미지 분류 모델
+#### Dataset
+- AI Hub 동의보감 약초 이미지 데이터셋 활용
+#### Backend
+Flask
